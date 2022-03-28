@@ -21,6 +21,8 @@ class DatabaseNotifier extends ChangeNotifier {
   List<DogBreedDetail> get listDogBreed => _listDogBreed;
 
   void getDogBreed() async {
+    _state = LoadingState.loading;
+    notifyListeners();
     _listDogBreed = await databaseService.getDogBreed();
     if (_listDogBreed.isNotEmpty) {
       _state = LoadingState.loaded;
@@ -44,7 +46,7 @@ class DatabaseNotifier extends ChangeNotifier {
 
   Future<bool> isBookmark(DogBreedDetail breed) async {
     final bookmarkedArticle = await databaseService.getDogBreedByDetail(breed);
-    return bookmarkedArticle.isNotEmpty;
+    return bookmarkedArticle;
   }
 
   void removeDogBreed(DogBreedDetail breed) async {

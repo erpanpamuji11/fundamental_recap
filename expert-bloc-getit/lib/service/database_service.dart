@@ -54,8 +54,8 @@ class DatabaseService {
       where: 'breed = ? and message = ?',
       whereArgs: [breed.breed, breed.message],
     );
-
-     return results.isNotEmpty;
+    
+    return results.isNotEmpty;
   }
 
   Future<void> removeDogBreed(DogBreedDetail breed) async {
